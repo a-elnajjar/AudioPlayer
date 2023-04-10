@@ -105,7 +105,7 @@ struct AudioPlayerView: View {
             }
             
             do {
-                let asset = try AVAsset(url: URL(fileURLWithPath: url))
+
                 self.player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: url))
                 self.player.delegate = aduioPlayerDelegate
                 self.player.prepareToPlay()
