@@ -9,16 +9,16 @@ import SwiftUI
 import AVKit
 
 struct AudioPlayerView: View {
-    @State var data : Data = .init(count:0)
-    @State var title:String = ""
-    @State var sliderValue:Float = 0
-    @State var player:AVAudioPlayer!
-    @State var playing:Bool = false
-    @State var width:CGFloat = 0.0
-    @State var playList = ["ambient-classical-guitar-144998","smack-that-matrika-main-version-16158-01-35"]
-    @State var currentSong = 0
-    @State var finished  = false
-    @State var audioPlayerDelegate = AVAudioDelegate()
+    @State private  var data : Data = .init(count:0)
+    @State private var title:String = ""
+    @State private var sliderValue:Float = 0
+    @State private var player:AVAudioPlayer!
+    @State private  var playing:Bool = false
+    @State private var width:CGFloat = 0.0
+    @State public  var playList = [] 
+    @State private var currentSong = 0
+    @State private var finished  = false
+    @State private var audioPlayerDelegate = AVAudioDelegate()
     
     
     var body: some View {
@@ -100,7 +100,8 @@ struct AudioPlayerView: View {
             }.padding(.top,30)
                 .foregroundColor(.black)
         }.onAppear {
-            guard let url = Bundle.main.path(forResource: playList[currentSong], ofType: "mp3") else {
+            
+            guard let url = Bundle.main.path(forResource:playList[currentSong] as? String, ofType: "mp3") else {
                 return
             }
             
@@ -162,7 +163,7 @@ struct AudioPlayerView: View {
     }
     
     func changeSong(){
-        guard let url = Bundle.main.path(forResource: playList[currentSong], ofType: "mp3") else {
+        guard let url = Bundle.main.path(forResource: playList[currentSong] as? String, ofType: "mp3") else {
             return
         }
         

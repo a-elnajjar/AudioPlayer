@@ -11,9 +11,10 @@ import AVKit
 
 
 struct ContentView: View {
+    @State public var playList = ["ambient-classical-guitar-144998","smack-that-matrika-main-version-16158-01-35"]
     var body: some View {
         NavigationView {
-            AudioPlayerView().navigationTitle("Music Player")
+            AudioPlayerView(playList: playList).navigationTitle("Music Player")
         }
     }
 }
