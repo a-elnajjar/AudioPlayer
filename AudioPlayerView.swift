@@ -28,7 +28,7 @@ struct AudioPlayerView: View {
             
                 .resizable()
                 .frame(width: self.data.count == 0 ? 250 : nil,height:250 )
-            Text(title.isEmpty ? "Title gose here " : "" ).font(.title).padding(.top)
+            Text(title.isEmpty ? "Title gose here " : title ).font(.title).padding(.top)
                 .cornerRadius(15, antialiased: true)
             ZStack(alignment:.leading){
                 Capsule().fill(Color.black.opacity(0.08)).frame(height: 8)
