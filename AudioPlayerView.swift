@@ -16,9 +16,9 @@ struct AudioPlayerView: View {
     @State var playing:Bool = false
     @State var width:CGFloat = 0.0
     @State var playList = ["ambient-classical-guitar-144998","smack-that-matrika-main-version-16158-01-35"]
-    @State var curruntSong = 0
+    @State var currentSong = 0
     @State var finished  = false
-    @State var aduioPlayerDelegate = AVAudioDelegate()
+    @State var audioPlayerDelegate = AVAudioDelegate()
     
     
     var body: some View {
@@ -48,8 +48,8 @@ struct AudioPlayerView: View {
             HStack(spacing:UIScreen.main.bounds.width / 5-30 ){
                 Button(action: {
                     
-                    if curruntSong > 0{
-                        self.curruntSong -= 1
+                    if currentSong > 0{
+                        self.currentSong -= 1
                         self.changeSong()
                     }
                 }){
@@ -90,8 +90,8 @@ struct AudioPlayerView: View {
                     Image(systemName: "goforward.15").font(.title)
                 }
                 Button(action: {
-                    if self.playList.count - 1 !=  self.curruntSong{
-                        self.curruntSong += 1
+                    if self.playList.count - 1 !=  self.currentSong{
+                        self.currentSong += 1
                         self.changeSong()
                     }
                 }){
@@ -100,14 +100,14 @@ struct AudioPlayerView: View {
             }.padding(.top,30)
                 .foregroundColor(.black)
         }.onAppear {
-            guard let url = Bundle.main.path(forResource: playList[curruntSong], ofType: "mp3") else {
+            guard let url = Bundle.main.path(forResource: playList[currentSong], ofType: "mp3") else {
                 return
             }
             
             do {
 
                 self.player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: url))
-                self.player.delegate = aduioPlayerDelegate
+                self.player.delegate = audioPlayerDelegate
                 self.player.prepareToPlay()
                 getData()
                 
@@ -162,14 +162,14 @@ struct AudioPlayerView: View {
     }
     
     func changeSong(){
-        guard let url = Bundle.main.path(forResource: playList[curruntSong], ofType: "mp3") else {
+        guard let url = Bundle.main.path(forResource: playList[currentSong], ofType: "mp3") else {
             return
         }
         
         do {
             let asset = try AVAsset(url: URL(fileURLWithPath: url))
             self.player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: url))
-            self.player.delegate = aduioPlayerDelegate
+            self.player.delegate = audioPlayerDelegate
             self.data =  .init(count: 0)
             self.title = ""
             self.player.prepareToPlay()
