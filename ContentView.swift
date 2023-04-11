@@ -14,7 +14,7 @@ struct ContentView: View {
     @State public var playList = ["ambient-classical-guitar-144998","smack-that-matrika-main-version-16158-01-35"]
     var body: some View {
         NavigationView {
-            AudioPlayerView(playList: playList, currentSong: 0).navigationTitle("Music Player")
+            AudioPlayerView(playList: playList, currentSong: 1).navigationTitle("Music Player")
         }
     }
 }
