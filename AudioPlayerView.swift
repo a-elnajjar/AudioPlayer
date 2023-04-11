@@ -9,14 +9,15 @@ import SwiftUI
 import AVKit
 
 struct AudioPlayerView: View {
-    @State private  var data : Data = .init(count:0)
+    @State public  var playList = []
+    @State public var currentSong = 0
+    
+    @State private var data : Data = .init(count:0)
     @State private var title:String = ""
     @State private var sliderValue:Float = 0
     @State private var player:AVAudioPlayer!
-    @State private  var playing:Bool = false
+    @State private var playing:Bool = false
     @State private var width:CGFloat = 0.0
-    @State public  var playList = [] 
-    @State private var currentSong = 0
     @State private var finished  = false
     @State private var audioPlayerDelegate = AVAudioDelegate()
     
